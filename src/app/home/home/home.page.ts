@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth-service.service';
+import { AuthService } from '../../auth-service.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,9 @@ import { AuthService } from '../auth-service.service';
 })
 export class HomePage {
 
-  authForm : FormGroup;
+  authForm: FormGroup;
+  login$: Observable<Object>;
+  error: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
 
@@ -22,19 +24,18 @@ export class HomePage {
   }
 
 
-  authentification(){
+  authentication() {
     const val = this.authForm.value;
+    this.error = false;
+    // Inserer l'authentification
+    this.login$ = this.authService.getToken(val.login, val.password)
+    .pipe(
+      // Gestion en cas d'erreur (code HTTP différent de 200)
+      catchError(err => {
+        this.error = true;
+        return new Observable<never>();
+      })
+    );
 
-        if (val.login && val.password) {
-            // Inserer l'authentification
-            this.authService.authentification(val.login, val.password)
-            .subscribe(
-              () => {
-                  console.log("User is logged in");
-              }
-          );
-        }
   }
-
-
 }

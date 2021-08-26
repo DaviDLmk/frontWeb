@@ -7,20 +7,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <br>
-  <div>
-    <div>
-      <label>Login : </label>
-      <input type="text" id="login"  class="form-control" />
-      <br><br>
-      <label>Password : </label>
-      <input type="text" id="password"  class="form-control" />
-    </div>
-  </div>  
-  <br>
-  <p>
-    <button type="submit" class="btn btn-dark">S'authentifier</button>
-  </p> -->
   <br>
   <form [formGroup]="authForm">
     <fieldset>
@@ -38,7 +24,20 @@
     <br>
     <div class="form-buttons">
         <button class="button button-primary" 
-                (click)="Authentification()">S'authentifier</button>
+                (click)="authentication()">S'authentifier</button>
     </div>
 </form>
+<br>
+
+<ng-container *ngIf="login$ | async as data; else loadingOrError"><app-user-infos></app-user-infos></ng-container>
+<ng-template #loadingOrError>
+    <ng-container *ngIf="error">
+        <div class="col-12 text-center">
+            <div class="alert alert-danger" *ngIf="error">
+                Connexion impossible. Vérifiez la saisie.
+            </div>
+        </div>
+    </ng-container>
+</ng-template>
+
 </ion-content>
