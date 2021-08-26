@@ -1,20 +1,44 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Rattrapage Litzler David
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- <br>
+  <div>
+    <div>
+      <label>Login : </label>
+      <input type="text" id="login"  class="form-control" />
+      <br><br>
+      <label>Password : </label>
+      <input type="text" id="password"  class="form-control" />
+    </div>
+  </div>  
+  <br>
+  <p>
+    <button type="submit" class="btn btn-dark">S'authentifier</button>
+  </p> -->
+  <br>
+  <form [formGroup]="authForm">
+    <fieldset>
+        <legend>Login</legend>
+        <div class="form-field">
+            <label>Login : </label>
+            <input name="login" formControlName="login">
+        </div>
+        <div class="form-field">
+            <label>Password : </label>
+            <input name="password" formControlName="password" 
+                   type="password">
+        </div>
+    </fieldset>
+    <br>
+    <div class="form-buttons">
+        <button class="button button-primary" 
+                (click)="Authentification()">S'authentifier</button>
+    </div>
+</form>
 </ion-content>
