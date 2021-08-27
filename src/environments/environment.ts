@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  authAPI : "http://localhost:8080/",
-  userAPI : "http://localhost:8090/"
+  authAPI : "https://back-login-rattrapage-ld.herokuapp.com/",
+  userAPI : "https://back-info-rattrapage-ld.herokuapp.com/"
 };
 
 /*
