@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { getTokenAPIResponse } from 'src/app/auth-service.service';
+import { getInfoAPIResponse } from 'src/app/user-service.service';
 import { UserService } from '../../user-service.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { UserService } from '../../user-service.service';
 })
 export class UserInfosComponent implements OnInit {
 
-  info$ : Observable<getTokenAPIResponse>;
+  info$ : Observable<getInfoAPIResponse>;
   error: boolean = false;
 
   constructor(private userService : UserService) { }
